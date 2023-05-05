@@ -39,18 +39,18 @@ public class Login extends AppCompatActivity {
             {
                 String acc = Account_2.getText().toString().trim();
                 String pwd1 =pwd.getText().toString().trim();
-                User user = myDatabaseHelper.findUserPasswordByUserName(acc);
+                User user = myDatabaseHelper.findUserByUserName(acc);
                 if(user!=null) {
                     if (user.getPassword().equals(pwd1)) {
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
-                        Toast.makeText(Login.this, "登入成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Login Success!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "密码错误！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Wrong Password!", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(Login.this, "账号不存在，请注册！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "The Account Isn't Exist!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

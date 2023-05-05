@@ -107,10 +107,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     }
 
     //find User by name
-    public User findUserPasswordByUserName(String name)
+    public User findUserByUserName(String name)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="select * from "+TABLE_USERNAME+" where Account = " + name;
+        String sqlString="select * from "+TABLE_USERNAME+" where Account = '" + name+"'";
         Cursor result =db.rawQuery(sqlString,null);
         User user = null;
         if(result.getCount() != 0){
@@ -152,7 +152,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public List<Point> findPointsByCategory(String ct)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="select * from "+Table_Point + "where Category = " + ct;
+        String sqlString="select * from "+Table_Point + "where Category = '" + ct +"'";
         Cursor result =db.rawQuery(sqlString,null);
         List<Point> pointList = new ArrayList<>();
         for (result.moveToFirst();!result.isAfterLast();result.moveToNext())
@@ -176,7 +176,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public Point findPointsByCategory(int tid)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="select * from "+Table_Point + "where id = " + tid;
+        String sqlString="select * from "+Table_Point + "where id = '" + tid+"'";
         Cursor result =db.rawQuery(sqlString,null);
         Point point = null;
         if(result.getCount() != 0){
@@ -221,7 +221,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public ShowType findShowType(int sid)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="select * from "+Table_Show+" where id = " + sid;
+        String sqlString="select * from "+Table_Show+" where id  = '" + sid+"'";
         Cursor result =db.rawQuery(sqlString,null);
         ShowType showType = null;
         if(result.getCount() != 0){
@@ -241,7 +241,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public int findShowTypeByCategory(String category)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="select ShowID from "+Table_Category_Show+" where Category = " + category;
+        String sqlString="select ShowID from "+Table_Category_Show+" where Category = '" + category+"'";
         Cursor result =db.rawQuery(sqlString,null);
         ShowType showType = null;
         int id = -1;
