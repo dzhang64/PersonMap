@@ -14,6 +14,9 @@ public class Navigator extends AppCompatActivity {
     private Button pointSet;
     private Button passwordSet;
 
+    private Button back;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,7 @@ public class Navigator extends AppCompatActivity {
         showSet = findViewById(R.id.button1);
         pointSet = findViewById(R.id.button2);
         passwordSet = findViewById(R.id.button3);
+        back = findViewById(R.id.button6);
         showSet.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -40,6 +44,19 @@ public class Navigator extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Navigator.this, "Go To Point Set!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Navigator.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
 
     }
