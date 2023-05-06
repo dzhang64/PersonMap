@@ -2,7 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 访问网络，进行地图相关业务数据请求，包括地图数据，路线规划，POI检索等 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取网络状态，根据网络状态切换进行数据请求网络转换 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <application
+        android:name=".MapApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -10,7 +23,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonMap"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="CAq1N1MleYFnFmcDfp6S7XeCh42k3NVw" />
+        <activity
+            android:name=".PointSet"
+            android:exported="false" />
+        <activity
+            android:name=".ShowSet"
+            android:exported="false" />
+        <activity
+            android:name=".Navigator"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

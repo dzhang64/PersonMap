@@ -69,7 +69,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public  void insertShowType(String name,Integer size,String colorHex,Integer markID)
     {
         SQLiteDatabase db=super.getWritableDatabase();
-        String sqlString="insert into "+TABLE_USERNAME+"(Name,Size,ColorHex,MarkID) values (?,?,?,?)";
+        String sqlString="insert into "+Table_Show+"(Name,Size,ColorHex,MarkID) values (?,?,?,?)";
         Object args[]=new Object[]{name,size,colorHex,markID};
         db.execSQL(sqlString,args);
         db.close();
@@ -113,7 +113,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         String sqlString="select * from "+TABLE_USERNAME+" where Account = '" + name+"'";
         Cursor result =db.rawQuery(sqlString,null);
         User user = null;
-        if(result.getCount() != 0){
+        if (result.moveToFirst() != false){
             int id = result.getInt(0);
             String account = result.getString(1);
             String password = result.getString(2);
@@ -179,7 +179,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         String sqlString="select * from "+Table_Point + "where id = '" + tid+"'";
         Cursor result =db.rawQuery(sqlString,null);
         Point point = null;
-        if(result.getCount() != 0){
+        if (result.moveToFirst() != false){
             //判断数据库是否存在此对象
             int id = result.getInt(0);
             String category = result.getString(1);
@@ -224,7 +224,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         String sqlString="select * from "+Table_Show+" where id  = '" + sid+"'";
         Cursor result =db.rawQuery(sqlString,null);
         ShowType showType = null;
-        if(result.getCount() != 0){
+        if (result.moveToFirst() != false){
+            int id = result.getInt(0);
+            String name = result.getString(1);
+            int size = result.getInt(2);
+            String colorHex = result.getString(3);
+            int markID = result.getInt(4);
+            showType = new ShowType(id,name,size,colorHex,markID);
+        }
+        //关闭游标
+        result.close();
+        return showType;
+    }
+
+    //find ShowType by id
+    public ShowType findShowTypeByName(String sname)
+    {
+        SQLiteDatabase db=super.getWritableDatabase();
+        String sqlString="select * from "+Table_Show+" where Name  = '" + sname+"'";
+        Cursor result =db.rawQuery(sqlString,null);
+        ShowType showType = null;
+        if (result.moveToFirst() != false){
             int id = result.getInt(0);
             String name = result.getString(1);
             int size = result.getInt(2);
@@ -245,7 +265,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         Cursor result =db.rawQuery(sqlString,null);
         ShowType showType = null;
         int id = -1;
-        if(result.getCount() != 0){
+        if (result.moveToFirst() != false){
             id = result.getInt(0);
         }
         //关闭游标

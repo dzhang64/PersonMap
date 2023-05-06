@@ -19,6 +19,13 @@ public class ShowType {
         this.markID = markID;
     }
 
+    public ShowType(String name, Integer size, String colorHex, Integer markID) {
+        this.name = name;
+        this.size = size;
+        this.colorHex = colorHex;
+        this.markID = markID;
+    }
+
     public int getId() {
         return id;
     }

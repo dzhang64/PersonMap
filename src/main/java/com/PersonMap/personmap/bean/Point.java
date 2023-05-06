@@ -21,6 +21,14 @@ public class Point {
         this.latitude = latitude;
     }
 
+    public Point(String category, String name, String tips, Double longitude, Double latitude) {
+        this.category = category;
+        this.name = name;
+        this.tips = tips;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
     public int getId() {
         return id;
     }

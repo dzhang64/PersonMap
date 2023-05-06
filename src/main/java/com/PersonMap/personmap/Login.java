@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.PersonMap.personmap.bean.User;
 import com.PersonMap.personmap.sql.MyDatabaseHelper;
+import com.PersonMap.personmap.tools.SaveValue;
 
 public class Login extends AppCompatActivity {
 
@@ -42,6 +43,7 @@ public class Login extends AppCompatActivity {
                 User user = myDatabaseHelper.findUserByUserName(acc);
                 if(user!=null) {
                     if (user.getPassword().equals(pwd1)) {
+                        SaveValue.userName = user.getAccount();
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
